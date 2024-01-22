@@ -1,5 +1,35 @@
 // import React from 'react';
 import './App.css';
+import { useState } from 'react';
+import { Multiselect } from 'multiselect-react-dropdown';
+
+// function App(){
+//   const data= [
+//     {Attributes:'Customer ID', id:1 },
+//     {Attributes:'Interface ID', id:1 },
+//     {Attributes:'Asset ID,', id:1 },
+//     {Attributes:'Trans ID', id:1 },
+//     {Attributes:'Call Ref', id:1 },
+//     {Attributes:'W/O #', id:1 },
+//     {Attributes:'Status', id:1 },
+//     {Attributes:'App ID', id:1 },
+//     {Attributes:'Trans Flow', id:1},
+//     {Attributes:'Process Tag', id:1 },
+//     {Attributes:'Trans Type', id:1 },
+//     {Attributes:'Entry Date', id:1 },
+//     {Attributes:'Receive Date', id:1},
+//   ]
+//   const {options}=useState(data)
+
+//   return (
+//     <div className = "MultipleSlector">
+//     <div className="App">
+//     <h3>Select Columns To Display</h3>
+//     <multiselect options={options} displayValue="Attributes" />
+//     </div>
+//     </div>
+//   )
+// }
 
 const DropdownTable = () => {
   // Function to handle the dropdown selection
@@ -7,6 +37,22 @@ const DropdownTable = () => {
     //  logic to handle the dropdown selection
     console.log('Selected value ', value);
   };
+
+  const data = [
+    { Attributes: 'Customer ID,', id: 1 },
+    { Attributes: 'Interface ID,', id: 2 },
+    { Attributes: 'Asset ID,', id: 3 },
+    { Attributes: 'Trans ID', id: 4 },
+    { Attributes: 'Call Ref', id: 5 },
+    { Attributes: 'W/O #', id: 6 },
+    { Attributes: 'Status', id: 7 },
+    { Attributes: 'App ID', id: 8 },
+    { Attributes: 'Trans Flow', id: 9 },
+    { Attributes: 'Process Tag', id: 10 },
+    { Attributes: 'Trans Type', id: 11 },
+    { Attributes: 'Entry Date', id: 12 },
+    { Attributes: 'Receive Date', id: 13 },
+  ];
 
   return (
     <div>
@@ -25,7 +71,7 @@ const DropdownTable = () => {
           </thead>
           <tbody>
             <tr className='table-row'>
-              <td>Interface ID </td>
+              <td>Interface ID</td>
               <td>
                 <div className='dropdown'>
                   <button className='dropbtn'>Equals</button>
@@ -215,6 +261,51 @@ const DropdownTable = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div>
+        <table className='filter-table table-3'>
+          <thead>
+            <tr>
+              <th colSpan='3'>Select Columns To Display</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div className='multiselect-input'>
+                  <Multiselect
+                    options={data}
+                    displayValue='Attributes'
+                    onSelect={(selectedList, selectedItem) => {
+                      // Handle the selected items
+                    }}
+                    onRemove={(selectedList, removedItem) => {
+                      // Handle the removed items
+                    }}
+                  />
+                  <input type="submit" value="Show Logs" className='multiselect-btn'/>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {/* <div className='table-header'>
+          <p>
+            <strong>Select Columns To Display</strong>
+          </p>
+        </div>
+        <div className='multiselect-input'>
+          <Multiselect
+            options={data}
+            displayValue='Attributes'
+            onSelect={(selectedList, selectedItem) => {
+              // Handle the selected items
+            }}
+            onRemove={(selectedList, removedItem) => {
+              // Handle the removed items
+            }}
+          />
+        </div> */}
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ body {
 }
 
 .filter-table th {
-  background-color: #16a998;
+    background-color: #16a998;
   border-radius: 20px 20px 20px 20px;
   color: white;
   text-align: center;
@@ -137,4 +137,24 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.table-3,
+.multiselect-input {
+  width: 84.5%;
+  left: 3.5%;
+  margin-top: 1%;
+  margin-left: 118px;
+}
+
+.multiselect-btn {
+  width: 10%;
+  cursor: pointer;
+  margin-top: 3%;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 20px 20px 20px 20px;
+  padding: 10px;
+  font-size: 16px;
 }
