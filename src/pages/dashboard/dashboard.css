@@ -1,0 +1,160 @@
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #16a998;
+  padding: 10px;
+  border-radius: 20px 20px 20px 20px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.header img {
+  height: 50px;
+  border-radius: 20px 20px 20px 20px;
+  width: auto;
+  margin-left: 0px;
+}
+
+.header h2 {
+  color: #ffffff;
+  margin-right: 20px;
+}
+
+.filter-table {
+  flex: 1;
+  border-collapse: collapse;
+  margin-right: 20px;
+}
+
+.filter-table th {
+    background-color: #16a998;
+  border-radius: 20px 20px 20px 20px;
+  color: white;
+  text-align: center;
+}
+
+.filter-table td {
+  text-align: left;
+  padding: 10px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.filter-table th,
+.filter-table td {
+  padding: 4px;
+  text-align: center;
+}
+
+.table-1 td {
+  width: 250px;
+  padding-right: 5%;
+}
+
+.table-2 td {
+  padding-right: 5%;
+}
+
+.table-1 tr.table-row:after {
+  content: '';
+  height: 1px;
+  display: block;
+  position: absolute;
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0) 10%,
+    rgb(75, 73, 73) 50%,
+    rgba(255, 0, 0, 0) 90%
+  );
+  width: 50%;
+  left: 3.5%;
+  margin-top: 51px;
+}
+
+.table-2 tr.table-row:after {
+  content: '';
+  height: 1px;
+  display: block;
+  position: absolute;
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0) 10%,
+    rgb(141, 137, 137) 50%,
+    rgba(255, 0, 0, 0) 90%
+  );
+  width: 50%;
+  left: 45%;
+  margin-top: 62px;
+}
+
+/* Styling the dropdown menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #59ad5c;
+  border-radius: 20px 20px 20px 20px;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.table-3,
+.multiselect-input {
+  width: 84.5%;
+  left: 3.5%;
+  margin-top: 1%;
+  margin-left: 118px;
+}
+
+.multiselect-btn {
+  width: 10%;
+  cursor: pointer;
+  margin-top: 3%;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 20px 20px 20px 20px;
+  padding: 10px;
+  font-size: 16px;
+}
