@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./dashboard.css";
 import { Multiselect } from "multiselect-react-dropdown";
 
 const DropdownTable = () => {
+  const multiselectRef = useRef(null);
   const [filterOptions, setFilterOptions] = useState({}); // State variable to hold selected options
+  const [selectedItems, setSelectedItems] = useState([]); // State variable to hold selected options
+  const [selectAllButton, setSelectAllButton] = useState("Select All"); // State variable to hold selected options
 
   // Function to handle the dropdown selection
   const handleFilterSelection = (value, attribute) => {
@@ -11,6 +14,28 @@ const DropdownTable = () => {
       ...prevState,
       [attribute]: value,
     }));
+  };
+
+  const updateSelectItems = (selectedList) => {
+    setSelectedItems(selectedList);
+    
+    if ((selectedItems.length + 1) === data.length) {
+      setSelectAllButton("Remove All")
+    } else {
+      setSelectAllButton("Select All")
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (selectedItems.length === data.length) {
+      multiselectRef.current?.resetSelectedValues().then(() => {
+        updateSelectItems([]);
+        setSelectAllButton("Select All")
+      });
+    } else {
+      updateSelectItems(data);
+      setSelectAllButton("Remove All")
+    }
   };
 
   const filterData = [
@@ -23,9 +48,9 @@ const DropdownTable = () => {
   ];
 
   const data = [
-    { Attribute: "Customer ID,", id: 1 },
-    { Attribute: "Interface ID,", id: 2 },
-    { Attribute: "Asset ID,", id: 3 },
+    { Attribute: "Customer ID", id: 1 },
+    { Attribute: "Interface ID", id: 2 },
+    { Attribute: "Asset ID", id: 3 },
     { Attribute: "Trans ID", id: 4 },
     { Attribute: "Call Ref", id: 5 },
     { Attribute: "W/O #", id: 6 },
@@ -74,10 +99,7 @@ const DropdownTable = () => {
                       <a
                         href="#"
                         onClick={() =>
-                          handleFilterSelection(
-                            "Begins With",
-                            item.Attribute
-                          )
+                          handleFilterSelection("Begins With", item.Attribute)
                         }
                       >
                         Begins With
@@ -146,19 +168,21 @@ const DropdownTable = () => {
                   <Multiselect
                     options={data}
                     displayValue="Attribute"
-                    onSelect={(selectedList, selectedItem) => {
-                      console.log(selectedItem, selectedList);
-                      // Handle the selected items
-                    }}
-                    onRemove={(selectedList, removedItem) => {
-                      console.log(removedItem, selectedList);
-                      // Handle the removed items
-                    }}
+                    selectedValues={selectedItems}
+                    ref={multiselectRef}
+                    onSelect={updateSelectItems}
+                    onRemove={updateSelectItems}
                   />
                   <input
                     type="submit"
                     value="Show Logs"
                     className="multiselect-btn"
+                  />
+                  <input
+                    type="button"
+                    value={selectAllButton}
+                    className="multiselect-btn"
+                    onClick={handleSelectAll}
                   />
                 </div>
               </td>
