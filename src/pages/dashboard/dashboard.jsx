@@ -1,253 +1,153 @@
-import './dashboard.css';
-import { Multiselect } from 'multiselect-react-dropdown';
+import { useState } from "react";
+import "./dashboard.css";
+import { Multiselect } from "multiselect-react-dropdown";
 
 const DropdownTable = () => {
+  const [filterOptions, setFilterOptions] = useState({}); // State variable to hold selected options
+
   // Function to handle the dropdown selection
-  const handleDropdownSelection = (value) => {
-    //  logic to handle the dropdown selection
-    console.log('Selected value ', value);
+  const handleFilterSelection = (value, attribute) => {
+    setFilterOptions((prevState) => ({
+      ...prevState,
+      [attribute]: value,
+    }));
   };
 
+  const filterData = [
+    { Attribute: "Interface ID", id: 1 },
+    { Attribute: "AssetID", id: 2 },
+    { Attribute: "CallRef", id: 3 },
+    { Attribute: "W/O #", id: 4 },
+    { Attribute: "Transaction Type", id: 5 },
+    { Attribute: "MCN #", id: 6 },
+  ];
+
   const data = [
-    { Attributes: 'Customer ID,', id: 1 },
-    { Attributes: 'Interface ID,', id: 2 },
-    { Attributes: 'Asset ID,', id: 3 },
-    { Attributes: 'Trans ID', id: 4 },
-    { Attributes: 'Call Ref', id: 5 },
-    { Attributes: 'W/O #', id: 6 },
-    { Attributes: 'Status', id: 7 },
-    { Attributes: 'App ID', id: 8 },
-    { Attributes: 'Trans Flow', id: 9 },
-    { Attributes: 'Process Tag', id: 10 },
-    { Attributes: 'Trans Type', id: 11 },
-    { Attributes: 'Entry Date', id: 12 },
-    { Attributes: 'Receive Date', id: 13 },
+    { Attribute: "Customer ID,", id: 1 },
+    { Attribute: "Interface ID,", id: 2 },
+    { Attribute: "Asset ID,", id: 3 },
+    { Attribute: "Trans ID", id: 4 },
+    { Attribute: "Call Ref", id: 5 },
+    { Attribute: "W/O #", id: 6 },
+    { Attribute: "Status", id: 7 },
+    { Attribute: "App ID", id: 8 },
+    { Attribute: "Trans Flow", id: 9 },
+    { Attribute: "Process Tag", id: 10 },
+    { Attribute: "Trans Type", id: 11 },
+    { Attribute: "Entry Date", id: 12 },
+    { Attribute: "Receive Date", id: 13 },
   ];
 
   return (
     <div>
-      <header className='header'>
-        <img src='images/Atleos Logo.png' alt='Logo' />
+      <header className="header">
+        <img src="images/Atleos Logo.png" alt="Logo" />
         <nav>
           <h2>SOUP Customer Interface Dashboard</h2>
         </nav>
       </header>
-      <div className='container'>
-        <table className='filter-table table-1'>
+      <div className="container">
+        <table className="filter-table table-1">
           <thead>
             <tr>
-              <th colSpan='3'>Select Filter To Display Result</th>
+              <th colSpan="3">Select Filter To Display Result</th>
             </tr>
           </thead>
           <tbody>
-            <tr className='table-row'>
-              <td>Interface ID</td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
+            {filterData.map((item, index) => (
+              <tr className="table-row" key={index}>
+                <td>{item.Attribute}</td>
+                <td>
+                  <div className="dropdown">
+                    <button className="dropbtn">
+                      {filterOptions[item.Attribute] || "Equals"}
+                    </button>
+                    <div className="dropdown-content">
+                      <a
+                        href="#"
+                        onClick={() =>
+                          handleFilterSelection("Equals", item.Attribute)
+                        }
+                      >
+                        Equals
+                      </a>
+                      <a
+                        href="#"
+                        onClick={() =>
+                          handleFilterSelection(
+                            "Begins With",
+                            item.Attribute
+                          )
+                        }
+                      >
+                        Begins With
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
-            <tr className='table-row'>
-              <td>AssetID</td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
-            <tr className='table-row'>
-              <td>CallRef</td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
-            <tr className='table-row'>
-              <td>W/O # </td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
-            <tr className='table-row'>
-              <td>Transaction Type</td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
-            <tr className='table-row'>
-              <td>MCN # </td>
-              <td>
-                <div className='dropdown'>
-                  <button className='dropbtn'>Equals</button>
-                  <div className='dropdown-content'>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Equals')}
-                    >
-                      Equals
-                    </a>
-                    <a
-                      href='#'
-                      onClick={() => handleDropdownSelection('Begins With')}
-                    >
-                      Begins With
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <input type='text' className='form-control' />
-              </td>
-            </tr>
+                </td>
+                <td>
+                  <input type="text" className="form-control" />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
-        <table className='filter-table table-2'>
+        <table className="filter-table table-2">
           <thead>
             <tr>
-              <th colSpan='2'>Filter Condition</th>
+              <th colSpan="2">Filter Condition</th>
             </tr>
           </thead>
           <tbody>
-            <tr className='table-row'>
+            <tr className="table-row">
               <td>Search By</td>
               <td>
-                <input type='text' id='searchBy' className='form-control' />
+                <input type="text" id="searchBy" className="form-control" />
               </td>
             </tr>
-            <tr className='table-row'>
+            <tr className="table-row">
               <td>Start Date</td>
               <td>
-                <input type='date' id='startDate' className='form-control' />
+                <input type="date" id="startDate" className="form-control" />
               </td>
             </tr>
-            <tr className='table-row'>
+            <tr className="table-row">
               <td>End Date</td>
               <td>
-                <input type='date' id='endDate' className='form-control' />
+                <input type="date" id="endDate" className="form-control" />
               </td>
             </tr>
-            <tr className='table-row'>
+            <tr className="table-row">
               <td>Beginning Seq No.</td>
               <td>
-                <input type='text' id='beginSeqNo' className='form-control' />
+                <input type="text" id="beginSeqNo" className="form-control" />
               </td>
             </tr>
-            <tr className='table-row'>
+            <tr className="table-row">
               <td>Ending Seq. No.</td>
               <td>
-                <input type='text' id='endSeqNo' className='form-control' />
+                <input type="text" id="endSeqNo" className="form-control" />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
-        <table className='filter-table table-3'>
+        <table className="filter-table table-3">
           <thead>
             <tr>
-              <th colSpan='3'>Select Columns To Display</th>
+              <th colSpan="3">Select Columns To Display</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <div className='multiselect-input'>
+                <div className="multiselect-input">
                   <Multiselect
                     options={data}
-                    displayValue='Attributes'
+                    displayValue="Attribute"
                     onSelect={(selectedList, selectedItem) => {
-                      console.log(selectedItem, selectedList)
+                      console.log(selectedItem, selectedList);
                       // Handle the selected items
                     }}
                     onRemove={(selectedList, removedItem) => {
@@ -256,32 +156,15 @@ const DropdownTable = () => {
                     }}
                   />
                   <input
-                    type='submit'
-                    value='Show Logs'
-                    className='multiselect-btn'
+                    type="submit"
+                    value="Show Logs"
+                    className="multiselect-btn"
                   />
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        {/* <div className='table-header'>
-          <p>
-            <strong>Select Columns To Display</strong>
-          </p>
-        </div>
-        <div className='multiselect-input'>
-          <Multiselect
-            options={data}
-            displayValue='Attributes'
-            onSelect={(selectedList, selectedItem) => {
-              // Handle the selected items
-            }}
-            onRemove={(selectedList, removedItem) => {
-              // Handle the removed items
-            }}
-          />
-        </div> */}
       </div>
     </div>
   );
