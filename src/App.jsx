@@ -24,12 +24,20 @@ function App() {
     localStorage.setItem('authenticated', true);
   };
 
+  const logout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('authenticated');
+  };
+
   return (
     <Router>
       <div className='App'>
         <Switch>
           <Route exact path='/login'>
             <LoginPage isAuthenticated={isAuthenticated} login={login} />
+          </Route>
+          <Route exact path='/logout'>
+            <LogoutPage logout={logout} />
           </Route>
           <PrivateRoute
             exact path='/dashboard'
@@ -61,6 +69,11 @@ const PrivateRoute = ({ isAuthenticated, component: Component, ...rest }) => {
 PrivateRoute.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired, // isAuthenticated prop should be a boolean and is required
   component: PropTypes.elementType.isRequired, // component prop should be a React element type and is required
+};
+
+const LogoutPage = ({ logout }) => {
+  logout();
+  return <Redirect to='/login' />;
 };
 
 export default App;

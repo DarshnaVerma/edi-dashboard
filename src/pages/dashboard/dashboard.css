@@ -11,7 +11,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #16a998;
+  background-color: #115f56;
   padding: 10px;
   border-radius: 20px 20px 20px 20px;
   overflow: hidden;
@@ -37,7 +37,7 @@ body {
 }
 
 .filter-table th {
-    background-color: #16a998;
+    background-color: #115f56;
   border-radius: 20px 20px 20px 20px;
   color: white;
   text-align: center;
@@ -106,7 +106,7 @@ body {
 }
 
 .dropbtn {
-  background-color: #59ad5c;
+  background-color: #328a74;
   border-radius: 20px 20px 20px 20px;
   color: white;
   padding: 10px;
@@ -151,7 +151,7 @@ body {
   width: 10%;
   cursor: pointer;
   margin-top: 3%;
-  background-color: #4caf50;
+  background-color: #328a74;
   color: white;
   border: none;
   border-radius: 20px 20px 20px 20px;
